@@ -41,7 +41,7 @@ React 19 (Vite), React Router, json-server (mock backend), Vitest, React Testing
 ### Installation
 
 ```bash
-git clone https://github.com/<your-username>/coffee-r-us.git
+git clone https://github.com/brovincemangwana/coffee-r-us.git
 cd coffee-r-us
 npm install
 ```
