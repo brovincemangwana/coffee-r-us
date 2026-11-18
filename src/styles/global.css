@@ -157,3 +157,75 @@ body {
   text-align: center;
   margin-top: 1.25rem;
 }
+/* ---------- Admin list (edit) ---------- */
+/* Stack the two cards vertically; this overrides the earlier .admin rule */
+.admin {
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.admin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-row-info span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.edit-fields input {
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.edit-fields input:focus {
+  outline: none;
+  border-color: #7b61ff;
+}
+
+.edit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-row button {
+  padding: 0.5rem 1rem;
+  background-color: #6d2c1f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-row button.secondary {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
