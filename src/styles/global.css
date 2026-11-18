@@ -38,3 +38,44 @@ body {
   margin: 0;
   color: #000;
 }
+/* ---------- Shop page ---------- */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 80px);
+}
+
+.sidebar {
+  background-color: #9b8170;
+  padding: 1.5rem;
+}
+
+.coffee-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+  align-content: start;
+}
+
+.coffee-card {
+  background-color: #d9d9d9;
+  color: #4a3b2a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.coffee-card h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+
+.coffee-card p {
+  margin: 0.5rem 0;
+}
+
+.status {
+  text-align: center;
+  padding: 2rem;
+}
