@@ -1,20 +1,68 @@
+/* =========================================================
+   Coffee R Us: global styles
+   Sections: variables, base, navbar, home, shop, admin, responsive
+   ========================================================= */
+
+/* ---------- Theme colors (taken from the mock-up) ---------- */
+:root {
+  --bg: #87674b;
+  --nav: #8a7a6b;
+  --sidebar: #9b8170;
+  --panel: #766659;
+  --card: #d9d9d9;
+  --card-text: #4a3b2a;
+  --accent: #6d2c1f;
+  --accent-hover: #86372a;
+  --focus: #7b61ff;
+  --error: #e05252;
+  --error-text: #ffd0d0;
+}
+
+/* ---------- Base ---------- */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
-  font-family: system-ui, sans-serif;
-  background-color: #87674b;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-color: var(--bg);
   color: #fff;
 }
 
+/* Makes the page at least the full screen height, so the brown
+   background and the sidebar always reach the bottom */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Visible keyboard focus for buttons and links */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Navbar ---------- */
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.5rem 2rem;
-  background-color: #8a7a6b;
+  background-color: var(--nav);
 }
 
 .navbar a {
@@ -22,32 +70,106 @@ body {
   text-decoration: none;
   font-size: 1.3rem;
   padding-bottom: 0.2rem;
+  border-bottom: 4px solid transparent; /* reserves space so the layout doesn't jump */
+  transition: border-color 0.2s;
 }
 
+.navbar a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+/* The white underline for the current page */
 .navbar a.active {
-  border-bottom: 4px solid #fff;
+  border-bottom-color: #fff;
 }
 
+/* ---------- Home ---------- */
 .home {
   text-align: center;
-  padding-top: 6rem;
+  padding: 6rem 1rem;
 }
 
 .home h1 {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 8vw, 4.5rem); /* scales with the screen width */
+  font-weight: 400;
   margin: 0;
   color: #000;
 }
-/* ---------- Shop page ---------- */
+
+.home p {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  max-width: 14em;
+  margin: 0.5rem auto 0;
+}
+
+/* ---------- Shop ---------- */
 .shop-layout {
+  flex: 1;
   display: grid;
   grid-template-columns: 240px 1fr;
-  min-height: calc(100vh - 80px);
 }
 
 .sidebar {
-  background-color: #9b8170;
+  background-color: var(--sidebar);
   padding: 1.5rem;
+}
+
+.sidebar h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1rem;
+}
+
+/* Rounded pill search box from the mock-up */
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: var(--card);
+  color: var(--card-text);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--focus);
+}
+
+.origin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.origin-list li {
+  margin-bottom: 0.6rem;
+}
+
+.origin-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.origin-list input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--accent);
+}
+
+.clear-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .coffee-grid {
@@ -59,11 +181,21 @@ body {
 }
 
 .coffee-card {
-  background-color: #d9d9d9;
-  color: #4a3b2a;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card);
+  color: var(--card-text);
   border-radius: 12px;
   padding: 1.25rem;
   text-align: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.coffee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
 .coffee-card h2 {
@@ -75,22 +207,42 @@ body {
   margin: 0.5rem 0;
 }
 
+.coffee-card .origin {
+  font-weight: 600;
+}
+
+/* margin-top: auto pushes the price to the bottom, so prices line up
+   across cards even when the descriptions have different lengths */
+.coffee-card .price {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .status {
   text-align: center;
   padding: 2rem;
 }
 
+/* Keeps the "no results" message spanning the whole grid */
+.no-results {
+  grid-column: 1 / -1;
+}
+
 /* ---------- Admin Portal ---------- */
 .admin {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   padding: 3rem 1rem;
 }
 
 .admin-card {
   width: 100%;
-  max-width: 480px;
-  background-color: #766659;
+  max-width: 520px;
+  background-color: var(--panel);
   border-radius: 24px;
   padding: 2rem;
 }
@@ -101,6 +253,7 @@ body {
   font-size: 1.6rem;
 }
 
+/* Form */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -113,25 +266,27 @@ body {
   margin-bottom: 0.35rem;
 }
 
-.form-group input {
+.form-group input,
+.edit-fields input {
   padding: 0.75rem;
   border: 2px solid transparent;
   border-radius: 8px;
   font-size: 1rem;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.edit-fields input:focus {
   outline: none;
-  border-color: #7b61ff;
+  border-color: var(--focus);
 }
 
 /* Red error state from the mock-up */
 .form-group input.input-error {
-  border-color: #e05252;
+  border-color: var(--error);
 }
 
 .error-text {
-  color: #ffb3b3;
+  color: var(--error-text);
   font-size: 0.8rem;
   margin-top: 0.35rem;
 }
@@ -140,12 +295,17 @@ body {
   display: block;
   margin: 1.5rem auto 0;
   padding: 0.75rem 2.5rem;
-  background-color: #6d2c1f;
+  background-color: var(--accent);
   color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.coffee-form button:hover:not(:disabled) {
+  background-color: var(--accent-hover);
 }
 
 .coffee-form button:disabled {
@@ -155,16 +315,10 @@ body {
 
 .form-message {
   text-align: center;
-  margin-top: 1.25rem;
-}
-/* ---------- Admin list (edit) ---------- */
-/* Stack the two cards vertically; this overrides the earlier .admin rule */
-.admin {
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  margin: 1.25rem 0 0;
 }
 
+/* Manage list */
 .admin-list {
   list-style: none;
   margin: 0;
@@ -200,14 +354,7 @@ body {
 
 .edit-fields input {
   padding: 0.5rem;
-  border: 2px solid transparent;
-  border-radius: 6px;
   font-size: 0.95rem;
-}
-
-.edit-fields input:focus {
-  outline: none;
-  border-color: #7b61ff;
 }
 
 .edit-actions {
@@ -218,66 +365,105 @@ body {
 
 .admin-row button {
   padding: 0.5rem 1rem;
-  background-color: #6d2c1f;
+  background-color: var(--accent);
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.admin-row button:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.admin-row button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .admin-row button.secondary {
   background-color: transparent;
   border: 1px solid #fff;
 }
-/* ---------- Sidebar: search and filters ---------- */
-.sidebar h3 {
-  margin: 1.5rem 0 0.75rem;
-  font-size: 1rem;
+
+/* =========================================================
+   Responsive layout
+   Rules inside a media query only apply at that width or below.
+   They come last so they override the rules above.
+   ========================================================= */
+
+/* Small laptops: 3 cards per row */
+@media (max-width: 1100px) {
+  .coffee-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-/* Rounded "pill" search box from the mock-up */
-.search-input {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 999px;
-  background-color: #d9d9d9;
-  color: #4a3b2a;
-  font-size: 1rem;
+/* Tablets: the sidebar moves above the cards, 2 cards per row */
+@media (max-width: 800px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .coffee-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Origin checkboxes flow in a row instead of a tall column */
+  .origin-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .origin-list li {
+    margin-bottom: 0;
+  }
+
+  .navbar {
+    padding: 1.25rem 1rem;
+  }
+
+  .navbar a {
+    font-size: 1.1rem;
+  }
 }
 
-.search-input:focus {
-  outline: 2px solid #7b61ff;
-}
+/* Phones: 1 card per row, tighter spacing */
+@media (max-width: 520px) {
+  .coffee-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 
-.origin-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  .navbar a {
+    font-size: 1rem;
+  }
 
-.origin-list li {
-  margin-bottom: 0.6rem;
-}
+  .home {
+    padding-top: 4rem;
+  }
 
-.origin-list label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
+  .admin {
+    padding: 1.5rem 0.75rem;
+  }
 
-.clear-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 6px;
-  cursor: pointer;
-}
+  .admin-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
 
-/* Keeps the "no results" message spanning the whole grid */
-.no-results {
-  grid-column: 1 / -1;
+  /* Edit mode: the inputs go full width with the buttons side by side below */
+  .admin-row.editing {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edit-actions {
+    flex-direction: row;
+  }
+
+  .edit-actions button {
+    flex: 1;
+  }
 }
