@@ -1,0 +1,60 @@
+{
+  "coffees": [
+    {
+      "id": 1,
+      "name": "Ethiopian Yirgacheffe",
+      "description": "Bright and floral with notes of lemon and bergamot.",
+      "origin": "Ethiopia",
+      "price": 18.5
+    },
+    {
+      "id": 2,
+      "name": "Colombian Supremo",
+      "description": "Smooth and balanced with caramel sweetness.",
+      "origin": "Colombia",
+      "price": 15.0
+    },
+    {
+      "id": 3,
+      "name": "Kenya AA",
+      "description": "Bold and juicy with blackcurrant and a wine-like finish.",
+      "origin": "Kenya",
+      "price": 19.0
+    },
+    {
+      "id": 4,
+      "name": "Brazil Santos",
+      "description": "Nutty and chocolatey with low acidity.",
+      "origin": "Brazil",
+      "price": 13.5
+    },
+    {
+      "id": 5,
+      "name": "Guatemala Antigua",
+      "description": "Rich cocoa and spice with a smoky finish.",
+      "origin": "Guatemala",
+      "price": 16.0
+    },
+    {
+      "id": 6,
+      "name": "Sumatra Mandheling",
+      "description": "Earthy and full-bodied with herbal undertones.",
+      "origin": "Indonesia",
+      "price": 17.0
+    },
+    {
+      "id": 7,
+      "name": "Costa Rica Tarrazu",
+      "description": "Clean and crisp with honey and citrus notes.",
+      "origin": "Costa Rica",
+      "price": 16.5
+    },
+    {
+      "id": 8,
+      "name": "Rwanda Bourbon",
+      "description": "Sweet red fruit with a silky body.",
+      "origin": "Rwanda",
+      "price": 18.0
+    }
+  ]
+}
