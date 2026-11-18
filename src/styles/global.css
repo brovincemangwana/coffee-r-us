@@ -229,3 +229,55 @@ body {
   background-color: transparent;
   border: 1px solid #fff;
 }
+/* ---------- Sidebar: search and filters ---------- */
+.sidebar h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1rem;
+}
+
+/* Rounded "pill" search box from the mock-up */
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: #d9d9d9;
+  color: #4a3b2a;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: 2px solid #7b61ff;
+}
+
+.origin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.origin-list li {
+  margin-bottom: 0.6rem;
+}
+
+.origin-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.clear-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Keeps the "no results" message spanning the whole grid */
+.no-results {
+  grid-column: 1 / -1;
+}

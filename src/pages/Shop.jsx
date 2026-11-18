@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
 import CoffeeCard from "../components/CoffeeCard";
+import FilterSidebar from "../components/FilterSidebar";
+import useCoffeeFilters from "../hooks/useCoffeeFilters";
 
 const API_URL = "http://localhost:3001/coffees";
 
 function Shop() {
-  // Three pieces of state: the data, a loading flag, and an error message
   const [coffees, setCoffees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Runs once after the first render (empty dependency array)
+  // All search and filter logic lives in the custom hook
+  const {
+    search,
+    setSearch,
+    origins,
+    selectedOrigins,
+    toggleOrigin,
+    clearFilters,
+    filteredCoffees,
+  } = useCoffeeFilters(coffees);
+
   useEffect(() => {
-    // Guards against updating state if the component unmounts mid-request
     let cancelled = false;
 
     async function fetchCoffees() {
@@ -38,13 +48,23 @@ function Shop() {
 
   return (
     <section className="shop-layout">
-      {/* Sidebar for search and location filters (added in Step 7) */}
-      <aside className="sidebar"></aside>
+      <FilterSidebar
+        search={search}
+        onSearchChange={setSearch}
+        origins={origins}
+        selectedOrigins={selectedOrigins}
+        onToggleOrigin={toggleOrigin}
+        onClear={clearFilters}
+      />
 
       <div className="coffee-grid">
-        {coffees.map((coffee) => (
-          <CoffeeCard key={coffee.id} coffee={coffee} />
-        ))}
+        {filteredCoffees.length === 0 ? (
+          <p className="status no-results">No coffees match your search.</p>
+        ) : (
+          filteredCoffees.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
+          ))
+        )}
       </div>
     </section>
   );
