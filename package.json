@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "server": "json-server --watch db.json --port 3001",
-  "test": "vitest",
-  "build": "vite build",
-  "lint": "eslint ."
-},
+    "dev": "vite",
+    "server": "json-server --watch db.json --port 3001",
+    "test": "vitest",
+    "build": "vite build",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
